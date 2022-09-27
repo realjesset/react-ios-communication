@@ -1,10 +1,22 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+import { VitePWA } from "vite-plugin-pwa";
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 3000,
-  },
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: "autoUpdate",
+      injectRegister: "auto",
+      includeAssets: ["vite.svg", "favicon.ico"],
+      manifest: {
+        name: "React to Swift",
+        short_name: "react-swift",
+        description: "react to swift communication",
+        theme_color: "#ffffff",
+        scope: "/",
+        start_url: "/",
+      },
+    }),
+  ],
 });
