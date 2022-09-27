@@ -17,6 +17,7 @@ function App() {
   };
 
   const handleSendToiOS = () => {
+    // @ts-ignore
     window?.webkit?.messageHandlers[iOSEventName]?.postMessage(
       JSON.parse(iOSData)
     );
