@@ -8,7 +8,8 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "auto",
-      includeAssets: ["vite.svg", "favicon.ico"],
+      includeAssets: ["vite.svg", "favicon.ico", ".well-known/*"],
+
       manifest: {
         name: "React to Swift",
         short_name: "react-swift",
