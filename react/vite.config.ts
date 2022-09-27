@@ -16,6 +16,18 @@ export default defineConfig({
         theme_color: "#ffffff",
         scope: "/",
         start_url: "/",
+        icons: [
+          {
+            src: "vite.svg",
+            sizes: "192x192",
+            type: "image/svg",
+          },
+          {
+            src: "vite.svg",
+            sizes: "512x512",
+            type: "image/svg",
+          },
+        ],
       },
     }),
   ],
