@@ -18,9 +18,12 @@ function App() {
     const eventFunc = (e: any) => {
       console.log(`Custom event ${eventName} fired with data: ${e.detail}`);
       console.log(`JSON stringifying the data...`);
-      alert(
-        `Custom event ${eventName} fired with data: ${JSON.stringify(e.detail)}`
-      );
+      try {
+        const data = JSON.parse(e.detail);
+        alert(`Custom event ${eventName} fired with data: ${data}`);
+      } catch {
+        alert("Error stringifying data");
+      }
     };
 
     if (currentEventName) {
