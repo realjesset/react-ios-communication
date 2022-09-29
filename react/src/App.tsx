@@ -16,15 +16,18 @@ function App() {
 
   const createCustomEvent = () => {
     const eventFunc = (e: any) => {
-      console.log(`Custom event ${eventName} fired with data: ${e}`);
+      console.log(`Custom event ${eventName} fired with data: ${e.detail}`);
       console.log(`JSON stringifying the data...`);
-      alert(`Custom event ${eventName} fired with data: ${JSON.stringify(e)}`);
+      alert(
+        `Custom event ${eventName} fired with data: ${JSON.stringify(e.detail)}`
+      );
     };
 
     if (currentEventName) {
       window.removeEventListener(currentEventName, eventFunc);
       console.log(`Successfully removed event: ${currentEventName}`);
     }
+
     window.addEventListener(eventName, eventFunc);
     console.log(`Successfully created event: ${eventName}`);
     setCurrentEventName(eventName);
