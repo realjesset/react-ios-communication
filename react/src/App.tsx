@@ -4,7 +4,7 @@ import reactLogo from "./assets/react.svg";
 
 function App() {
   const [eventName, setEventName] = useState("");
-  const [currentEventName, setCurrentEventName] = useState("");
+  const [currentEventName, setCurrentEventName] = useState<string>();
   const [iOSEventName, setIOSEventName] = useState("");
   const [iOSData, setIOSData] = useState(
     JSON.stringify(
@@ -21,9 +21,10 @@ function App() {
       alert(`Custom event ${eventName} fired with data: ${JSON.stringify(e)}`);
     };
 
-    window.removeEventListener(currentEventName, eventFunc);
-    if (currentEventName.length)
+    if (currentEventName) {
+      window.removeEventListener(currentEventName, eventFunc);
       console.log(`Successfully removed event: ${currentEventName}`);
+    }
     window.addEventListener(eventName, eventFunc);
     console.log(`Successfully created event: ${eventName}`);
     setCurrentEventName(eventName);
