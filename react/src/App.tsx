@@ -6,17 +6,30 @@ function App() {
   const [eventName, setEventName] = useState("");
   const [currentEventName, setCurrentEventName] = useState("");
   const [iOSEventName, setIOSEventName] = useState("");
-  const [iOSData, setIOSData] = useState("");
+  const [iOSData, setIOSData] = useState(
+    JSON.stringify(
+      { status: "call_end", message: "Your hearing has ended" },
+      null,
+      2
+    )
+  );
 
   const createCustomEvent = () => {
-    const func = (e: any) => alert(JSON.stringify(e));
+    const func = (e: any) => {
+      console.log(`Custom event ${eventName} fired with data: ${e}`);
+      console.log(`JSON stringifying the data...`);
+      alert(`Custom event ${eventName} fired with data: ${JSON.stringify(e)}`);
+    };
 
     window.removeEventListener(currentEventName, func);
+    console.log(`Successfully removed event: ${currentEventName}`);
     window.addEventListener(eventName, func);
+    console.log(`Successfully created event: ${eventName}`);
     setCurrentEventName(eventName);
   };
 
   const handleSendToiOS = () => {
+    console.log(`Sending event: ${iOSEventName} with data: ${iOSData}`);
     // @ts-ignore
     window?.webkit?.messageHandlers[iOSEventName]?.postMessage(
       JSON.parse(iOSData)
@@ -40,11 +53,6 @@ function App() {
       />
       <textarea
         value={iOSData}
-        defaultValue={JSON.stringify(
-          { status: "call_end", message: "Your hearing has ended" },
-          null,
-          2
-        )}
         placeholder="paste valid JSON here to send to iOS"
         onChange={({ target }) => setIOSData(target.value)}
       />
