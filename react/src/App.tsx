@@ -22,7 +22,8 @@ function App() {
     };
 
     window.removeEventListener(currentEventName, eventFunc);
-    console.log(`Successfully removed event: ${currentEventName}`);
+    if (currentEventName.length)
+      console.log(`Successfully removed event: ${currentEventName}`);
     window.addEventListener(eventName, eventFunc);
     console.log(`Successfully created event: ${eventName}`);
     setCurrentEventName(eventName);
